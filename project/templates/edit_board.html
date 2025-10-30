@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="form-container" style="max-width: 600px; margin: 2rem auto;">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Edit Board: {{ board.name }}</legend>
+                <div>
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                    {% if form.name.errors %}
+                        <div class="errors">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(value="Save Changes") }}
+            </div>
+        </form>
+        <div class="form-footer">
+            <a href="{{ url_for('main.dashboard') }}">Cancel</a>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="board-container" data-board-id="{{ board.id }}">
+    <div class="board-header">
+        <h1>Board: {{ board.name }}</h1>
+        {% if current_user == board.owner %}
+            <a href="{{ url_for('main.manage_board_members', board_id=board.id) }}" style="margin-right: 1rem;">Manage Members</a>
+        {% endif %}
+        <a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+    </div>
+
+    <div class="board-canvas">
+
+        {% for list in board.lists %}
+        <div class="list-column">
+            <div class="list-header">
+                <h3>{{ list.name }}</h3>
+                <div class="list-actions">
+                    <a href="{{ url_for('main.edit_list', list_id=list.id) }}" class="btn-edit-small">Edit</a>
+                    <form method="POST" action="{{ url_for('main.delete_list', list_id=list.id) }}"
+                          onsubmit="return confirm('Delete this list and all its cards?');">
+                        <button type="submit" class="btn-delete">X</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card-container" id="list-{{ list.id }}">
+            {% for card in list.cards %}
+            <div class="card" id="card-{{ card.id }}" draggable="true">
+                    <div class="card-header">
+                        <h4>{{ card.title }}</h4>
+                        <div class="card-actions">
+                            <a href="{{ url_for('main.edit_card', card_id=card.id) }}" class="btn-edit-small">Edit</a>
+                            <form method="POST" action="{{ url_for('main.delete_card', card_id=card.id) }}"
+                                  onsubmit="return confirm('Delete this card?');">
+                                <button type="submit" class="btn-delete">X</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% if card.description %}
+                    <p>{{ card.description }}</p>
+                    {% endif %}
+            </div>
+            {% endfor %}
+            </div>
+
+            <div class="card-form">
+                <form method="POST" action="{{ url_for('main.create_card', list_id=list.id) }}">
+                    {{ card_form.hidden_tag() }}
+                    <div>
+                        {{ card_form.title(placeholder="New Card Title") }}
+                    </div>
+                    <div>
+                        {{ card_form.description(placeholder="Description...", rows=2) }}
+                    </div>
+                    <div>
+                        {{ card_form.submit(value="Add Card") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="new-list-form">
+            <form method="POST" action="{{ url_for('main.create_list', board_id=board.id) }}">
+                {{ list_form.hidden_tag() }}
+                <fieldset>
+                    <legend>Add a New List</legend>
+                    <div>
+                        {{ list_form.name(placeholder="Enter list name...") }}
+                    </div>
+                </fieldset>
+                <div>
+                    {{ list_form.submit() }}
+                </div>
+            </form>
+        </div>
+
+    </div> </div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock content %}

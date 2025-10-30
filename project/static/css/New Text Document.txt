@@ -1,0 +1,116 @@
+/* Basic Reset */
+body, h1, h2, p, div, form, fieldset, legend, label, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+}
+nav a:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.nav-links a {
+    margin-left: 1rem;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+}
+.container {
+    max-width: 960px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+/* Forms */
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.form-container fieldset {
+    border: none;
+}
+.form-container legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.form-container div {
+    margin-bottom: 1rem;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.form-container input[type="submit"] {
+    background: #333;
+    color: white;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.form-footer {
+    margin-top: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+.errors {
+    color: red;
+    font-size: 0.8rem;
+}
+
+/* Flash Messages */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+.alert-info {
+    background: #cce5ff;
+    color: #004085;
+}
