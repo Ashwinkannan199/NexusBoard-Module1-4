@@ -22,3 +22,13 @@ DATABASE_URL='postgresql://<your_db_username>:your_db_password@localhost/<databa
    python run.py        ----------- to run where run.py directory is opened
 
 5. Or Run and Debug in your CLI
+
+# Instruction for Testing the project using pytest
+
+1. Install pytest and pytest-flask in your pip environment.
+
+2. In your CLI or cmd, enter pytest
+
+3. Check the execution of the test cases.
+
+
